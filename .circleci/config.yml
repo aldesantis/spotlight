@@ -2,27 +2,27 @@ version: 2.0
 
 jobs:
   bundle_dependencies:
-    working_directory: ~/pragma-rails-starter
+    working_directory: ~/spotlight
     docker:
       - image: ruby:2.4.2
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pragma-rails-starter
+          at: ~/spotlight
       - type: cache-restore
-        key: pragma-rails-starter-{{ checksum "Gemfile.lock" }}
+        key: spotlight-{{ checksum "Gemfile.lock" }}
       - run: bundle check --path vendor/bundle || bundle install --path vendor/bundle
       - type: cache-save
-        key: pragma-rails-starter-{{ checksum "Gemfile.lock" }}
+        key: spotlight-{{ checksum "Gemfile.lock" }}
         paths:
-          - ~/pragma-rails-starter/vendor/bundle
+          - ~/spotlight/vendor/bundle
       - persist_to_workspace:
           root: .
           paths:
             - vendor/bundle
 
   test:
-    working_directory: ~/pragma-rails-starter
+    working_directory: ~/spotlight
     docker:
       - image: ruby:2.4.2
         environment:
@@ -30,16 +30,16 @@ jobs:
           - PG_USER=ubuntu
           - RAILS_ENV=test
           - RACK_ENV=test
-          - DATABASE_URL=postgres://ubuntu@localhost:5432/pragma-rails-starter
+          - DATABASE_URL=postgres://ubuntu@localhost:5432/spotlight
       - image: postgres
         environment:
           - POSTGRES_USER=ubuntu
-          - POSTGRES_DB=pragma-rails-starter
+          - POSTGRES_DB=spotlight
       - image: redis
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pragma-rails-starter
+          at: ~/spotlight
       - run: bundle --path vendor/bundle
       - run: cp config/application.example.yml config/application.yml
       - run: bundle exec rake db:create
@@ -56,13 +56,13 @@ jobs:
         path: /tmp/test-results
 
   heroku_deploy:
-    working_directory: ~/pragma-rails-starter
+    working_directory: ~/spotlight
     docker:
       - image: ruby:2.4.2
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pragma-rails-starter
+          at: ~/spotlight
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
@@ -74,12 +74,8 @@ jobs:
               git push heroku-production master
             fi
 
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-              git push heroku-staging staging:master
-            fi
-
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              git push heroku-dev develop:master
+              git push heroku-staging staging:master
             fi
 
 workflows:
@@ -97,5 +93,4 @@ workflows:
             branches:
               only:
                 - develop
-                - staging
                 - master
