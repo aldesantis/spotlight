@@ -1,7 +1,6 @@
 #!/bin/bash
-git remote add heroku-dev git@heroku.com:my-app.git
-git remote add heroku-staging git@heroku.com:my-app.git
-git remote add heroku-production git@heroku.com:my-app.git
+git remote add heroku-staging git@heroku.com:b911-spotlight-staging.git
+git remote add heroku-production git@heroku.com:b911-spotlight-production.git
 
 cat >> ~/.ssh/config << EOF
   VerifyHostKeyDNS yes
