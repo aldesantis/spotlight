@@ -75,7 +75,7 @@ jobs:
             fi
 
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              git push heroku-staging staging:master
+              git push heroku-staging develop:master
             fi
 
 workflows:
