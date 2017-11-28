@@ -1,65 +1,15 @@
-# Pragma/Rails Starter
+# Spotlight
 
-This is a boilerplate for developing RESTful APIs with Ruby on Rails.
+Welcome to Spotlight, an API documentation analyzer!
 
 ## Usage
 
-To use the boilerplate, simply clone this repo:
-
-```console
-$ git clone git://github.com/pragmarb/pragma-rails-starter.git my-project
-$ cd my-project
-```
-
-You will also need to configure the application and the database:
-
-```console
-$ cp config/database.example.yml config/database.yml
-$ cp config/application.example.yml config/application.yml
-```
-
-Once you're done with the configuration, you can setup the database:
-
-```console
-$ rake db:setup
-```
-
-Run the application with:
-
-```console
-$ foreman s -f Procfile.development
-```
-
-## Updates
-
-You can keep the starter up to date even after you start development on the application by adding
-it as a separate repo:
-
-```console
-$ git remote add upstream git://github.com/pragmarb/pragma-rails-starter.git
-$ git fetch upstream
-$ git merge upstream master
-```
+...
 
 ## Dependencies
 
-- Ruby 2.3
-- PostgreSQL
-- Rails 5
-
-## Included tools
-
-The following tools are included and configured in the boilerplate:
-
-- [Puma](http://puma.io/) as the web server
-- [Foreman](https://github.com/ddollar/foreman) for process management
-- [Figaro](https://github.com/laserlemon/figaro) for configuration management
-- [Rack::CORS](https://github.com/cyu/rack-cors) for CORS
-- [Rack::Attack](https://github.com/kickstarter/rack-attack) for rate-limiting
-- [Pragma](https://github.com/pragmarb/pragma) for business logic
-- [Bugsnag](https://bugsnag.com) for error tracking
-- [CircleCI](https://circleci.com) for continuous integration
-- [Docker](https://docker.com) and [Compose](https://docs.docker.com/compose/) for containerization
+- Ruby 2.4
+- PostgreSQL 9.3
 
 ## Testing
 
