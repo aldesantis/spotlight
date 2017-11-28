@@ -4,7 +4,7 @@ Welcome to Spotlight, an API documentation analyzer!
 
 ## Usage
 
-...
+TODO: Write usage instructions
 
 ## Dependencies
 
