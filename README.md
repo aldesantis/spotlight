@@ -43,3 +43,10 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/pragma
 ## License
 
 This software is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Possible checks
+
+- Check operations are all documented
+- Check groups, models and endpoints are ordered correctly
+- Check traits are applied correctly
+- Check properties are defined correctly in all endpoints
