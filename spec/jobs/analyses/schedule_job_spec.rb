@@ -8,7 +8,7 @@ RSpec.describe Analyses::ScheduleJob do
   before do
     relation = instance_double('Analysis::ActiveRecord_Relation')
 
-    allow(Analysis).to receive(:queued)
+    allow(Analysis).to receive(:queued_ordered)
       .and_return(relation)
 
     allow(relation).to receive(:find_each)

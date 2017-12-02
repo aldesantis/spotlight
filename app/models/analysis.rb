@@ -9,5 +9,9 @@ class Analysis < ApplicationRecord
     def queued
       with_status :queued
     end
+
+    def queued_ordered
+      queued.order(created_at: :asc)
+    end
   end
 end

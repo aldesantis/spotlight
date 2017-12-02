@@ -5,7 +5,7 @@ module Analyses
     queue_as :default
 
     def perform
-      Analysis.queued.find_each do |analysis|
+      Analysis.queued_ordered.find_each do |analysis|
         PerformJob.perform_later analysis
       end
     end
