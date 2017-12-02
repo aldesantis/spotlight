@@ -94,3 +94,7 @@ Metrics/BlockLength:
 
 Rails/HttpPositionalArguments:
   Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: true
+  EnforcedStyle: receive

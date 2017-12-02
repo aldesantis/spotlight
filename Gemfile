@@ -27,6 +27,12 @@ gem 'clockwork'
 # Error reporting
 gem 'bugsnag'
 
+# GitHub API
+gem 'octokit'
+
+# Business logic
+gem 'interactor-rails'
+
 group :production do
   # Heroku
   gem 'rails_12factor'
