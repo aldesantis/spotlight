@@ -7,6 +7,8 @@ module Analyses
     delegate :project, :commit, to: :analysis
 
     def call
+      analysis.update! status: :running
+
       project.octokit.create_status(
         project.repo_uri,
         commit,
@@ -24,6 +26,8 @@ module Analyses
         context: 'spotlight/oas',
         description: 'Your API documentation is good!'
       )
+
+      analysis.update! status: :completed
     end
   end
 end

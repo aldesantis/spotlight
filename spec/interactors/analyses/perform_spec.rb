@@ -10,6 +10,8 @@ RSpec.describe Analyses::Perform do
   before do
     allow(analysis.project).to receive(:octokit)
       .and_return(octokit)
+
+    allow(analysis).to receive(:update!)
   end
 
   it 'creates two statuses' do
