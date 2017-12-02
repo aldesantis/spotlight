@@ -15,12 +15,11 @@ module Webhooks
 
       fail! :no_project, "Could not find project '#{repo_uri}'" unless project
 
-      project.octokit.create_status(
-        project.repo_uri,
-        payload['after'],
-        'success',
-        context: 'spotlight/oas',
-        description: 'The current OAS is okay!'
+      commit = payload['after']
+
+      Analysis.create!(
+        project: project,
+        commit: commit
       )
     end
   end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  has_many :analyses, inverse_of: :project, dependent: :destroy
+
   enumerize :repo_provider, in: %i[github]
 
   attribute :oauth_access_token

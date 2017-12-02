@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128233929) do
+ActiveRecord::Schema.define(version: 20171202170417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "analyses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "project_id"
+    t.string "commit", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commit"], name: "index_analyses_on_commit"
+    t.index ["project_id", "commit"], name: "index_analyses_on_project_id_and_commit"
+    t.index ["project_id"], name: "index_analyses_on_project_id"
+    t.index ["status"], name: "index_analyses_on_status"
+  end
 
   create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -30,4 +42,5 @@ ActiveRecord::Schema.define(version: 20171128233929) do
     t.index ["repo_provider", "repo_uri"], name: "index_projects_on_repo_provider_and_repo_uri"
   end
 
+  add_foreign_key "analyses", "projects", on_delete: :cascade
 end

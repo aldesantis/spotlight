@@ -21,16 +21,9 @@ RSpec.describe Webhooks::Process do
   context 'when it finds the related project' do
     let(:project) { build_stubbed(:project) }
 
-    let(:octokit) { instance_double('Octokit::Client') }
-
-    before do
-      allow(project).to receive(:octokit)
-        .and_return(octokit)
-    end
-
-    it 'creates a commit status' do
-      expect(octokit).to receive(:create_status)
-        .with(project.repo_uri, payload['after'], any_args)
+    it 'enqueues an analysis' do
+      expect(Analysis).to receive(:create!)
+        .with(project: project, commit: payload['after'])
         .once
 
       context
