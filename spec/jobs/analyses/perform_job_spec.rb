@@ -6,7 +6,7 @@ RSpec.describe Analyses::PerformJob do
   let(:analysis) { build_stubbed(:analysis) }
 
   it 'calls the Perform interactor' do
-    expect(Analyses::Perform).to receive(:call!)
+    expect(Analyses::Perform).to receive(:call)
       .with(analysis: analysis)
       .once
 

@@ -5,7 +5,7 @@ module Analyses
     queue_as :default
 
     def perform(analysis)
-      Analyses::Perform.call! analysis: analysis
+      Analyses::Perform.call analysis: analysis
     end
   end
 end
