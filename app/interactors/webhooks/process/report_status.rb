@@ -12,7 +12,7 @@ module Webhooks
           commit,
           'pending',
           context: ENV.fetch('GITHUB_CONTEXT'),
-          description: 'Spotlight has queued your analysis.'
+          description: 'Your analysis is enqueued behind others.'
         )
       end
     end
