@@ -10,6 +10,7 @@ module Analyses
 
       def call
         FileUtils.mkpath project.base_path
+        FileUtils.remove_dir(analysis.base_path) if File.directory?(analysis.base_path)
         Git.clone repository_url, analysis.commit, path: project.base_path
       end
 
