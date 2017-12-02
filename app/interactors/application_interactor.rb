@@ -16,4 +16,10 @@ class ApplicationInteractor
       end
     end
   end
+
+  protected
+
+  def fail!(error_type, error_message)
+    context.fail! error_type: error_type, error_message: error_message
+  end
 end

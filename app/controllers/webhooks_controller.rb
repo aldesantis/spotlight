@@ -2,7 +2,15 @@
 
 class WebhooksController < ApplicationController
   def push
-    Webhooks::Process.call!(payload: params)
-    head :no_content
+    result = Webhooks::Process.call(payload: params)
+
+    if result.success?
+      head :no_content
+    else
+      render status: :unprocessable_entity, json: {
+        error_type: result.error_type,
+        error_message: result.error_message
+      }
+    end
   end
 end

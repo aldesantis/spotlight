@@ -6,8 +6,7 @@ module Webhooks
     required :project
 
     def call
-      octokit = Octokit::Client.new(access_token: project.oauth_access_token)
-      webhook = octokit.create_hook(
+      webhook = project.octokit.create_hook(
         project.repo_uri,
         'web',
         url: Rails.application.routes.url_helpers.push_webhook_url(
@@ -18,6 +17,7 @@ module Webhooks
         events: ['push'],
         active: true
       )
+
       project.update! webhook_id: webhook.id
     end
   end

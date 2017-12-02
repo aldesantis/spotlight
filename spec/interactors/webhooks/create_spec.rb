@@ -8,8 +8,7 @@ RSpec.describe Webhooks::Create do
   let(:octokit) { instance_double('Octokit::Client') }
 
   before do
-    allow(Octokit::Client).to receive(:new)
-      .with(access_token: project.oauth_access_token)
+    allow(project).to receive(:octokit)
       .and_return(octokit)
 
     allow(octokit).to receive(:create_hook)
