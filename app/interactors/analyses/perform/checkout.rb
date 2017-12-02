@@ -19,7 +19,7 @@ module Analyses
         # rubocop:disable Metrics/LineLength
         case project.repo_provider.to_sym
         when :github
-          "git://#{project.octokit.login}:#{project.oauth_access_token}@github.com/#{project.repo_uri}.git"
+          "https://#{project.octokit.login}:#{project.oauth_access_token}@github.com/#{project.repo_uri}.git"
         else
           fail "Cannot construct repo URI for provider #{project.repo_provider}"
         end
