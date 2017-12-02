@@ -20,6 +20,6 @@ class Analysis < ApplicationRecord
   end
 
   def config_path
-    "#{project.base_path}/#{commit}/config.json"
+    "#{project.base_path}/#{commit}/spotlight.json"
   end
 end
