@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Webhooks::Process do
+RSpec.describe Webhooks::Process::Parse do
   subject(:context) { described_class.call(payload: payload) }
 
   let(:payload) do
@@ -21,19 +21,19 @@ RSpec.describe Webhooks::Process do
   context 'when it finds the related project' do
     let(:project) { build_stubbed(:project) }
 
-    it 'enqueues an analysis' do
-      expect(Analysis).to receive(:create!)
-        .with(project: project, commit: payload['after'])
-        .once
+    it 'extracts the project from the payload' do
+      expect(context.project).to eq(project)
+    end
 
-      context
+    it 'extracts the commit SHA1 from the payload' do
+      expect(context.commit).to eq('testsha1')
     end
   end
 
   context 'when it cannot find the related project' do
     let(:project) { nil }
 
-    it 'fails' do
+    it 'fails the context' do
       expect(context).to be_failure
     end
   end

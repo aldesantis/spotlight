@@ -13,7 +13,7 @@ module Analyses
         project.repo_uri,
         commit,
         'pending',
-        context: 'spotlight/oas',
+        context: ENV.fetch('GITHUB_CONTEXT'),
         description: 'Your API documentation is being analyzed...'
       )
 
@@ -23,7 +23,7 @@ module Analyses
         project.repo_uri,
         commit,
         'success',
-        context: 'spotlight/oas',
+        context: ENV.fetch('GITHUB_CONTEXT'),
         description: 'Your API documentation is good!'
       )
 
