@@ -9,4 +9,5 @@ module Clockwork
   end
 
   every(10.seconds, 'projects.schedule_setups')
+  every(5.seconds, 'analyses.schedule')
 end
