@@ -7,10 +7,12 @@ module Webhooks
       required :project, :commit
 
       def call
-        Analysis.create!(
+        analysis = Analysis.create!(
           project: project,
           commit: commit
         )
+
+        Analyses::PerformJob.perform_later analysis
       end
     end
   end
