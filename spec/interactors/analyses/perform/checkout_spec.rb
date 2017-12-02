@@ -5,12 +5,20 @@ RSpec.describe Analyses::Perform::Checkout do
 
   let(:analysis) { build_stubbed(:analysis) }
 
+  let(:octokit) { instance_double('Octokit::Client') }
+
   before do
     allow(FileUtils).to receive(:mkpath)
     allow(Git).to receive(:clone)
 
     allow(analysis.project).to receive(:base_path)
       .and_return('test_base_path')
+
+    allow(analysis.project).to receive(:octokit)
+      .and_return(octokit)
+
+    allow(octokit).to receive(:login)
+      .and_return('jdoe')
   end
 
   it 'sets up the base project path' do
@@ -23,7 +31,7 @@ RSpec.describe Analyses::Perform::Checkout do
 
   it 'clones the repo in the project path' do
     expect(Git).to receive(:clone)
-      .with(analysis.project.full_repo_url, analysis.commit, path: analysis.project.base_path)
+      .with(an_instance_of(String), analysis.commit, path: analysis.project.base_path)
       .once
 
     context
