@@ -13,4 +13,17 @@ class Project < ApplicationRecord
   def octokit
     Octokit::Client.new(access_token: oauth_access_token)
   end
+
+  def full_repo_url
+    case repo_provider.to_sym
+    when :github
+      "git://github.com/#{repo_uri}.git"
+    else
+      fail "Cannot construct repo URI for provider #{repo_provider}"
+    end
+  end
+
+  def base_path
+    Rails.root.join('tmp', 'analyses', id).to_s
+  end
 end

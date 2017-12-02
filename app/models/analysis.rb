@@ -14,4 +14,12 @@ class Analysis < ApplicationRecord
       queued.order(created_at: :asc)
     end
   end
+
+  def base_path
+    "#{project.base_path}/#{commit}"
+  end
+
+  def config_path
+    "#{project.base_path}/#{commit}/config.json"
+  end
 end

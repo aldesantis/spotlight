@@ -5,6 +5,6 @@ module Analyses
     accept :analysis
     required :analysis
 
-    organize [MarkRunning, RunChecks, MarkCompleted]
+    organize MarkRunning, Checkout, ParseConfig, MarkCompleted
   end
 end

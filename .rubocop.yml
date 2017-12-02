@@ -98,3 +98,6 @@ Rails/HttpPositionalArguments:
 RSpec/MessageSpies:
   Enabled: true
   EnforcedStyle: receive
+
+Style/GuardClause:
+  Enabled: false

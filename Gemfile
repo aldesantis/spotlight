@@ -33,6 +33,9 @@ gem 'octokit'
 # Business logic
 gem 'interactor-rails'
 
+# Git
+gem 'git'
+
 group :production do
   # Heroku
   gem 'rails_12factor'
@@ -71,6 +74,7 @@ group :test do
   gem 'fuubar'
   gem 'shoulda-matchers'
   gem 'webmock'
+  gem 'fakefs', require: 'fakefs/safe'
 
   # CircleCI
   gem 'rspec_junit_formatter'
