@@ -50,3 +50,4 @@ This software is available as open source under the terms of the [MIT License](h
 - Check groups, models and endpoints are ordered correctly
 - Check traits are applied correctly
 - Check properties are defined correctly in all endpoints
+- Check model/endpoint visibility
