@@ -10,22 +10,18 @@ module Analyses
 
       def call
         unless File.exist?(analysis.config_path)
-          analysis.update! status: :failed
-
-          error_message = 'Spotlight could not find a configuration file.'
-
-          project.octokit.create_status(
-            project.repo_uri,
-            commit,
-            'error',
-            context: ENV.fetch('GITHUB_CONTEXT'),
-            description: error_message
-          )
-
-          fail! :no_configuration, error_message
+          message = 'Spotlight could not find a configuration file.'
+          MarkFailure.call! analysis: analysis, message: message
+          fail! :no_configuration, message
         end
 
         context.config = JSON.parse(File.read(analysis.config_path))
+
+        if context.config['swagger_url'].blank?
+          message = 'Your configuration file is invalid.'
+          MarkFailure.call! analysis: analysis, message: message
+          fail! :invalid_configuration, message
+        end
       end
     end
   end

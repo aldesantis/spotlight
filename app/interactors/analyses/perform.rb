@@ -7,7 +7,7 @@ module Analyses
 
     delegate :project, :commit, to: :analysis
 
-    organize MarkRunning, Checkout, ParseConfig, MarkCompleted
+    organize MarkRunning, Checkout, ParseConfig, GetSwagger, RunChecks, MarkCompleted
 
     around :handle_errors
 
@@ -17,16 +17,7 @@ module Analyses
     def handle_errors(interactor)
       interactor.call
     rescue => e
-      analysis.update! status: :failed
-
-      project.octokit.create_status(
-        project.repo_uri,
-        commit,
-        'error',
-        context: ENV.fetch('GITHUB_CONTEXT'),
-        description: 'Spotlight could not analyze your commit.'
-      )
-
+      MarkFailure.call! analysis: analysis, message: 'Spotlight could not analyze your commit.'
       raise e
     end
     # rubocop:enable Lint/RescueWithoutErrorClass
