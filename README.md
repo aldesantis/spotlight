@@ -40,10 +40,6 @@ $ git push heroku master
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/pragmarb/pragma-rails-starter.
 
-## License
-
-This software is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
 ## Possible checks
 
 - Check operations are all documented
@@ -51,3 +47,7 @@ This software is available as open source under the terms of the [MIT License](h
 - Check traits are applied correctly
 - Check properties are defined correctly in all endpoints
 - Check model/endpoint visibility
+
+## Todos
+
+- [ ] Write tests for checks
