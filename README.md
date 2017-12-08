@@ -40,14 +40,7 @@ $ git push heroku master
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/pragmarb/pragma-rails-starter.
 
-## Possible checks
-
-- Check operations are all documented
-- Check groups, models and endpoints are ordered correctly
-- Check traits are applied correctly
-- Check properties are defined correctly in all endpoints
-- Check model/endpoint visibility
-
 ## Todos
 
 - [ ] Write tests for checks
+- [ ] Implement introspective checks (properties, operations)
