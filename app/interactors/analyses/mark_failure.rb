@@ -8,7 +8,7 @@ module Analyses
     def call
       analysis.update! status: :failed
 
-      project.octokit.create_status(
+      analysis.project.octokit.create_status(
         analysis.project.repo_uri,
         analysis.commit,
         'error',
